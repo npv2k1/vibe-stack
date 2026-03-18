@@ -1,5 +1,5 @@
 import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
+import { Button } from "@vibe-stack/ui";
 import styles from "./page.module.css";
 
 type Props = Omit<ImageProps, "src"> & {
@@ -22,6 +22,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <h1 className="text-3xl font-bold underline">Hello world!</h1>
         <ThemeImage
           className={styles.logo}
           srcLight="turborepo-dark.svg"

@@ -1,0 +1,18 @@
+{
+  "success": "Success",
+  "created": "Created successfully",
+  "errors": {
+    "bad_request": "Bad request",
+    "not_found": "Not found",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Forbidden",
+    "validation_failed": "Validation failed",
+    "internal_server_error": "Internal server error",
+    "unique_constraint_failed": "Unique constraint failed",
+    "record_not_found": "Record not found",
+    "prisma_error": "Prisma error: {code}",
+    "prisma_validation_error": "Validation error (Prisma)",
+    "db_initialization_error": "Database initialization error",
+    "db_panic_error": "Database panic error"
+  }
+}

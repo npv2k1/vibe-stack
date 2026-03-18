@@ -1,0 +1,703 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/vibe/api": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/vibe/api/i18n/translate": {
+      "get": {
+        "operationId": "I18nController_translate",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lang",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "i18n"
+        ]
+      }
+    },
+    "/vibe/api/health": {
+      "get": {
+        "operationId": "CoreControler_healthCheck",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Core"
+        ]
+      }
+    },
+    "/vibe/api/ping": {
+      "get": {
+        "operationId": "CoreControler_ping",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Core"
+        ]
+      }
+    },
+    "/vibe/api/exception": {
+      "get": {
+        "operationId": "CoreControler_testException",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Core"
+        ]
+      }
+    },
+    "/vibe/api/jobs": {
+      "get": {
+        "operationId": "CoreControler_getJobs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Core"
+        ]
+      }
+    },
+    "/vibe/api/resolve": {
+      "get": {
+        "operationId": "CoreControler_testResolve",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Core"
+        ]
+      }
+    },
+    "/vibe/api/crypto/encrypt": {
+      "post": {
+        "operationId": "CryptoController_encrypt",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EncryptDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Crypto"
+        ]
+      }
+    },
+    "/vibe/api/crypto/decrypt": {
+      "post": {
+        "operationId": "CryptoController_decrypt",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EncryptDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Crypto"
+        ]
+      }
+    },
+    "/vibe/api/rabbitmq/publish": {
+      "post": {
+        "operationId": "RabbitMqController_publish",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendToQueueDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Rabbitmq"
+        ]
+      }
+    },
+    "/vibe/api/rabbitmq/send-to-queue": {
+      "post": {
+        "operationId": "RabbitMqController_sendToQueue",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendToQueueDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Rabbitmq"
+        ]
+      }
+    },
+    "/vibe/api/rabbitmq/health": {
+      "get": {
+        "operationId": "RabbitMqController_health",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Rabbitmq"
+        ]
+      }
+    },
+    "/vibe/api/rabbitmq/queues/{queue}/stats": {
+      "get": {
+        "operationId": "RabbitMqController_queueStats",
+        "parameters": [
+          {
+            "name": "queue",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Rabbitmq"
+        ]
+      }
+    },
+    "/vibe/api/rabbitmq/queues/{queue}": {
+      "delete": {
+        "operationId": "RabbitMqController_deleteQueue",
+        "parameters": [
+          {
+            "name": "queue",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Rabbitmq"
+        ]
+      }
+    },
+    "/vibe/api/kafka/publish": {
+      "post": {
+        "operationId": "KafkaController_publish",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendToQueueDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Kafka"
+        ]
+      }
+    },
+    "/vibe/api/http/health": {
+      "get": {
+        "operationId": "HttpController_health",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Http"
+        ]
+      }
+    },
+    "/vibe/api/socket/info": {
+      "get": {
+        "operationId": "SocketController_getInfo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Socket info"
+          }
+        },
+        "summary": "Socket info",
+        "tags": [
+          "socket"
+        ]
+      }
+    },
+    "/vibe/api/socket/hello": {
+      "get": {
+        "operationId": "SocketController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "hello"
+          }
+        },
+        "summary": "hello",
+        "tags": [
+          "socket"
+        ]
+      }
+    },
+    "/vibe/api/socket/send/{id}": {
+      "post": {
+        "operationId": "SocketController_sendDirectMessage",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Success response description"
+          }
+        },
+        "summary": "Send direct MessageBody",
+        "tags": [
+          "socket"
+        ]
+      }
+    },
+    "/vibe/api/socket/broadcast": {
+      "post": {
+        "operationId": "SocketController_broadcastMessage",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BroadcastMessageRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "socket"
+        ]
+      }
+    },
+    "/vibe/api/schedule/add": {
+      "post": {
+        "operationId": "ScheduleController_addJob",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleJobDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Add job"
+          }
+        },
+        "summary": "Add job",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/vibe/api/schedule/update": {
+      "put": {
+        "operationId": "ScheduleController_updateJob",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateScheduleJobDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update job"
+          }
+        },
+        "summary": "Update job",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/vibe/api/schedule/delete": {
+      "delete": {
+        "operationId": "ScheduleController_deleteJob",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteScheduleJobDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Delete job"
+          }
+        },
+        "summary": "Delete job",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/vibe/api/schedule/status": {
+      "get": {
+        "operationId": "ScheduleController_getStatus",
+        "parameters": [
+          {
+            "name": "jobId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get job status"
+          }
+        },
+        "summary": "Get job status",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/vibe/api/schedule/jobs": {
+      "get": {
+        "operationId": "ScheduleController_listJobs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List jobs"
+          }
+        },
+        "summary": "List jobs",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/vibe/api/schedule/clean": {
+      "post": {
+        "operationId": "ScheduleController_clean",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Clean jobs"
+          },
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "Clean jobs",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "API",
+    "description": "API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "EncryptDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "data",
+          "key"
+        ]
+      },
+      "SendToQueueDto": {
+        "type": "object",
+        "properties": {
+          "queue": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object"
+          },
+          "options": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "queue",
+          "content",
+          "options"
+        ]
+      },
+      "BroadcastMessageRequestDto": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "string"
+          },
+          "message": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "event",
+          "message"
+        ]
+      },
+      "CreateScheduleJobDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "jobId": {
+            "type": "string"
+          },
+          "cron": {
+            "type": "string"
+          },
+          "every": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object"
+          },
+          "opts": {
+            "type": "object"
+          },
+          "autoStart": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "UpdateScheduleJobDto": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "cron": {
+            "type": "string"
+          },
+          "every": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object"
+          },
+          "opts": {
+            "type": "object"
+          }
+        }
+      },
+      "DeleteScheduleJobDto": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

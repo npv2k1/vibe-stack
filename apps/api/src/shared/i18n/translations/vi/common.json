@@ -1,0 +1,18 @@
+{
+  "success": "Thành công",
+  "created": "Tạo thành công",
+  "errors": {
+    "bad_request": "Yêu cầu không hợp lệ",
+    "not_found": "Không tìm thấy",
+    "unauthorized": "Không có quyền truy cập",
+    "forbidden": "Bị cấm",
+    "validation_failed": "Xác thực thất bại",
+    "internal_server_error": "Lỗi máy chủ",
+    "unique_constraint_failed": "Ràng buộc duy nhất bị vi phạm",
+    "record_not_found": "Không tìm thấy bản ghi",
+    "prisma_error": "Lỗi Prisma: {code}",
+    "prisma_validation_error": "Lỗi xác thực (Prisma)",
+    "db_initialization_error": "Lỗi khởi tạo cơ sở dữ liệu",
+    "db_panic_error": "Lỗi nghiêm trọng cơ sở dữ liệu"
+  }
+}

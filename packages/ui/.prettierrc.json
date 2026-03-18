@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/prettierrc",
+  "extends": ["@vdailyapp/prettier-config"],
+  "trailingComma": "all",
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["*.jsx", "*.tsx"],
+      "options": {
+        "printWidth": 120
+      }
+    }
+  ]
+}

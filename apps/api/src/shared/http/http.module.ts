@@ -1,0 +1,12 @@
+import { Global, Module } from '@nestjs/common';
+
+import { HttpController } from './http.controller';
+import { HttpService } from './http.service';
+
+@Global()
+@Module({
+  controllers: [HttpController],
+  providers: [HttpService],
+  exports: [HttpService],
+})
+export class HttpModule {}

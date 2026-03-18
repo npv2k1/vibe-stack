@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "@vibe-stack/ui/styles.css";
+
+import { UIProvider } from "@vibe-stack/ui";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <UIProvider>{children}</UIProvider>
       </body>
     </html>
   );
