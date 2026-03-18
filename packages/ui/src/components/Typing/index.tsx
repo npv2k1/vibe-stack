@@ -1,4 +1,3 @@
-'use client';
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 
@@ -30,19 +29,23 @@ const Cursor = styled.span`
 
 export const Typing: React.FC<TypingProps> = ({ text, speed = 50, cursor = true, className, style }) => {
   const [displayed, setDisplayed] = useState('');
+
   useEffect(() => {
     setDisplayed('');
-    let i = 0;
+
     const interval = setInterval(() => {
-      if (i < text.length) {
-        setDisplayed((prev) => prev + text[i]);
-        i++;
-      } else {
-        clearInterval(interval);
-      }
+      setDisplayed((prev) => {
+        if (prev.length < text.length) {
+          return text.slice(0, prev.length + 1); // ← dùng slice, không cần biến i
+        }
+        clearInterval(interval); // ← dừng khi đủ
+        return prev;
+      });
     }, speed);
+
     return () => clearInterval(interval);
   }, [text, speed]);
+
   return (
     <TypingWrapper className={className} style={style} data-testid="typing">
       {displayed}
