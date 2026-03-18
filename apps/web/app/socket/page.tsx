@@ -14,7 +14,7 @@ const Socket = () => {
 
   const { mutateAsync } = useKafkaPublishMutation();
 
-  const [event, setEvent] = useState([]);
+  const [event, setEvent] = useState<any[]>([]);
 
   const handlePublish = async () => {
     try {
@@ -32,11 +32,23 @@ const Socket = () => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on(queue, (message) => {
+    socket.on(queue, (data) => {
       // console.log("Socket connected");
       console.log("Received message from queue", message);
+
+      if (data) {
+        const message = JSON.parse(data);
+
+        setEvent((prev) => [...prev, message.message]);
+      }
     });
-  }, [socket, queue]);
+
+    return () => {
+      socket.off(queue);
+    };
+  }, [socket, queue, isConnected]);
+
+  console.log("event", event);
 
   const handleConnect = () => {
     socket.emit("subscrible", {
@@ -45,11 +57,12 @@ const Socket = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-gray-100">
-      <div>{isConnected ? "Connected" : "Not connected"}</div>
-      <div>{socketId}</div>
-
-      <div>
+    <div className="w-screen h-screen bg-gray-100 flex flex-row">
+      <div className="flex flex-col space-y-2 p-3 flex-1">
+        <div>
+          <div>{isConnected ? "Connected" : "Not connected"}</div>
+          <div>{socketId}</div>
+        </div>
         <input
           type="text"
           placeholder="Queue"
@@ -63,18 +76,21 @@ const Socket = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button onClick={handlePublish}>Publish to Kafka</button>
+        <Button onClick={handlePublish}>Publish to Kafka</Button>
       </div>
 
-      <Typing text="Nếu thấy Emotion code được inline vào file → fix thành công. Nếu không thấy → vẫn đang bị external."></Typing>
-      <FormSchema
-        config={[
-          {
-            type: FormType.Text,
-            name: "queue",
-          },
-        ]}
-      ></FormSchema>
+      <div className="flex flex-1">
+        <div className="flex flex-col space-y-2 p-3">
+          <div className="text-lg font-bold">Received Events:</div>
+          <Typing text={"123456789"}></Typing>
+
+          {event.map((e, index) => (
+            <div key={index} className="p-2 bg-white rounded shadow">
+              <Typing text={e}></Typing>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

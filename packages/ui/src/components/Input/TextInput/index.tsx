@@ -4,7 +4,10 @@ import { cn } from '../../utils';
 import { InputProps } from '../Input.type';
 import { baseInputClass } from '../inputStyles';
 
-export type TextInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> &
+export type TextInputProps = Omit<
+  React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  'onChange'
+> &
   InputProps<string>;
 
 export const TextInput: React.FC<TextInputProps> = ({ value, onChange, className, disabled, ...props }) => {
@@ -13,10 +16,7 @@ export const TextInput: React.FC<TextInputProps> = ({ value, onChange, className
       value={value ?? ''}
       onChange={(e) => onChange?.(e.target.value)}
       disabled={disabled}
-      className={cn(
-        baseInputClass,
-        className,
-      )}
+      className={cn(baseInputClass, className)}
       {...props}
     />
   );
